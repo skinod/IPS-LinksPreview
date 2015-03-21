@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin name="Links Preview" version_long="10000" version_human="1.0.0" author="Sijad aka Mr.Wosi" website="http://skinod..com" update_check="http://skinod.com/updatechk/sodlinkspreview"><hooks/><settings><setting><key>sod_link_preview_active</key><default>1</default></setting><setting><key>sod_link_preview_width</key><default>375</default></setting><setting><key>sod_link_preview_groups</key><default>*</default></setting><setting><key>sod_link_preview_internal</key><default>0</default></setting><setting><key>sod_link_preview_external</key><default>1</default></setting></settings><settingsCode><![CDATA[//<?php
+
+$form->add( new \IPS\Helpers\Form\YesNo( 'sod_link_preview_active', \IPS\Settings::i()->sod_link_preview_active ) );
+$form->add( new \IPS\Helpers\Form\Number( 'sod_link_preview_width', \IPS\Settings::i()->sod_link_preview_width ) );
+$form->add( new \IPS\Helpers\Form\Select( 'sod_link_preview_groups', \IPS\Settings::i()->sod_link_preview_groups, FALSE, array( 'options' => \IPS\Member\Group::groups(), 'parse' => 'normal', 'multiple' => true, 'unlimited' => '*', 'unlimitedLang' => 'everyone' ) ) );
+$form->add( new \IPS\Helpers\Form\YesNo( 'sod_link_preview_internal', \IPS\Settings::i()->sod_link_preview_internal ) );
+$form->add( new \IPS\Helpers\Form\YesNo( 'sod_link_preview_external', \IPS\Settings::i()->sod_link_preview_external ) );
+
+if ( $values = $form->values() )
+{
+	$form->saveAsSettings();
+	return TRUE;
+}
+
+return $form;]]></settingsCode><tasks/><htmlFiles/><cssFiles/><jsFiles><js filename="sod.core.linkPreview.js">LyoqCiAqIChjKSAyMDE1IFNraW5vZCAtIGh0dHA6Ly9za2lub2QuY29tCiAqCiAqIEF1dGhvcjogU2lqYWQKICovIAo7KCBmdW5jdGlvbigkLCBfLCB1bmRlZmluZWQpewoJInVzZSBzdHJpY3QiOwoJJCgnLmlwc1R5cGVfcmljaFRleHQgYScpLmF0dHIoJ2RhdGEtaXBzbGlua3ByZXZpZXcnLCAnMScpOwoJaXBzLmdldEFqYXgoKSggaXBzLmdldFNldHRpbmcoJ2Jhc2VVUkwnKSArICdhcHBsaWNhdGlvbnMvY29yZS9pbnRlcmZhY2Uvc29kL2xpbmtwcmV2aWV3LnBocCcgLCB7CgkJCWRhdGFUeXBlOiAnanNvbicsCgkJCXR5cGU6ICdnZXQnCgkJfSApCgkJCS5kb25lKCBmdW5jdGlvbiAocmVzcG9uc2UpIHsKCQkJCWlmKHJlc3BvbnNlLmFjdGl2ZSkKCQkJCQlpcHMudWkucmVnaXN0ZXJXaWRnZXQoJ2xpbmtwcmV2aWV3JywgaXBzLnVpLmhvdmVyY2FyZCwgCgkJCQkJCVtdLAoJCQkJCQl7IGxhenlMb2FkOiB0cnVlLCBsYXp5RXZlbnRzOiAnbW91c2VvdmVyJyB9LCBmdW5jdGlvbihlbGVtLCBvcHRpb25zLCBlKSB7CgkJCQkJCQlpZiggKGVsZW0ucmVsLm1hdGNoKC9leHRlcm5hbC8pICYmIHJlc3BvbnNlLmV4dGVybmFsKSB8fCByZXNwb25zZS5pbnRlcm5hbCApIHsKCQkJCQkJCQl2YXIgJGVsZW0gPSAkKGVsZW0pLCAkaW1nID0gJCgiPGltZz4iKS5hdHRyKCdzcmMnLCAiaHR0cDovL3Mud29yZHByZXNzLmNvbS9tc2hvdHMvdjEvIiArIGVuY29kZVVSSUNvbXBvbmVudCgkZWxlbS5hdHRyKCdocmVmJykpICsgIj93PSIgKyByZXNwb25zZS53aWR0aCArICImcj0iICsgTWF0aC5mbG9vciggTWF0aC5yYW5kb20oKSAqIDEwMDAwMDAgKSApOwoJCQkJCQkJCW9wdGlvbnMuY2FjaGUgPSBmYWxzZTsKCQkJCQkJCQlvcHRpb25zLndpZHRoID0gcmVzcG9uc2Uud2lkdGg7CgkJCQkJCQkJb3B0aW9ucy5jb250ZW50ID0gJGltZzsKCQkJCQkJCQl0aGlzLnJlc3BvbmQuY2FsbCggdGhpcywgZWxlbSwgb3B0aW9ucywgZSApOwoKCQkJCQkJCX0KCQkJCQkJfQoJCQkJCSk7CgkJCX0pOwp9KGpRdWVyeSwgXykpOw==</js></jsFiles><resourcesFiles/><lang><word key="sod_link_preview_active" js="0">Active Link Preview?</word><word key="sod_link_preview_width" js="0">Image Preview Width</word><word key="sod_link_preview_groups" js="0">Who Can See Links Preview</word><word key="sod_link_preview_internal" js="0">Link Preview For External Links</word></lang><versions><version long="10000" human="1.0.0"><![CDATA[//<?php
+
+
+/* To prevent PHP errors (extending class does not exist) revealing path */
+if ( !defined( '\IPS\SUITE_UNIQUE_KEY' ) )
+{
+	header( ( isset( $_SERVER['SERVER_PROTOCOL'] ) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.0' ) . ' 403 Forbidden' );
+	exit;
+}
+
+/**
+ * Install Code
+ */
+class ips_plugins_setup_install
+{
+	/**
+	 * ...
+	 *
+	 * @return	array	If returns TRUE, upgrader will proceed to next step. If it returns any other value, it will set this as the value of the 'extra' GET parameter and rerun this step (useful for loops)
+	 */
+	public function step1()
+	{
+		
+	}
+	
+	// You can create as many additional methods (step2, step3, etc.) as is necessary.
+	// Each step will be executed in a new HTTP request
+}]]></version></versions></plugin>
